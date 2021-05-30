@@ -1,4 +1,5 @@
-
+const hello = "Hello World!!";
+console.log(hello);
 
 
 const activeChat = document.getElementById("chatLink");
