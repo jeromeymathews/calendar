@@ -94,12 +94,12 @@ app.get('/chat', (req, res) => {
     res.render('chat', { title: "Mathews chat" });
 });
 
-io.on('connection', (socket) => {
-    console.log('a user connected');
-    socket.on('disconnect', () => {
-        console.log('user disconnected')
-    });
-});
+// io.on('connection', (socket) => {
+//     console.log('a user connected');
+//     socket.on('disconnect', () => {
+//         console.log('user disconnected')
+//     });
+// });
 
 app.listen(80, () => {
     console.log('Listening');
