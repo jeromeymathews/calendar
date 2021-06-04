@@ -4,7 +4,10 @@ const path = require('path');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 const engine = require('ejs-mate');
-const http = require('http').Server(app);
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require('socket.io');
+const io = new Server(server);
 
 const today = new Date();
 const month = today.getMonth();
@@ -63,7 +66,7 @@ db.once('open', () => {
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static('views/public'));
-const io = require('socket.io')(http);
+// const io = require('socket.io')(http);
 
 app.engine('ejs', engine);
 app.set('views', path.join(__dirname, 'views'));
@@ -76,7 +79,8 @@ app.get('/', (req, res) => {
     // res.set('Cache-control', 'public, max-age=150');
     res.render('home', {
         title: "Mathews",
-        dates: dates
+        dates: dates,
+        scriptPartial: ""
     });
 });
 
@@ -86,21 +90,28 @@ app.get('/calendar', (req, res) => {
         title: "Mathews calendar",
         month: months[month],
         year: year,
-        events: JSON.stringify(dates)
+        events: JSON.stringify(dates),
+        scriptPartial: ""
     });
 });
 
 app.get('/chat', (req, res) => {
-    res.render('chat', { title: "Mathews chat" });
+    res.render('chat', {
+        title: "Mathews chat",
+        scriptPartial: '<script src="/socket.io/socket.io.js"></script><script src="../js/chat.js"></script>'
+    });
 });
 
-// io.on('connection', (socket) => {
-//     console.log('a user connected');
-//     socket.on('disconnect', () => {
-//         console.log('user disconnected')
-//     });
-// });
+io.on('connection', (socket) => {
+    console.log('a user connected');
+    socket.on('disconnect', () => {
+        console.log('user disconnected')
+    });
+    socket.on('chat message', msg => {
+        io.emit('chat message', msg);
+    })
+});
 
-app.listen(80, () => {
+server.listen(80, () => {
     console.log('Listening');
 });

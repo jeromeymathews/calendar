@@ -95,7 +95,7 @@ tbody td span {
     width: 90%;
 }
 
-#input :focus{
+#input:focus{
     outline: none;
 }
 
