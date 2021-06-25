@@ -91,7 +91,7 @@ app.get('/calendar', (req, res) => {
         month: months[month],
         year: year,
         events: JSON.stringify(dates),
-        scriptPartial: ""
+        scriptPartial: '<script src="../js/calendar.js"></script>'
     });
 });
 
@@ -101,6 +101,13 @@ app.get('/chat', (req, res) => {
         scriptPartial: '<script src="/socket.io/socket.io.js"></script><script src="../js/chat.js"></script>'
     });
 });
+
+app.get('/video', (req, res) => {
+    res.render('video', {
+        title: "Mathews video",
+        scriptPartial: '<script src="../js/video.js"></script>'
+    })
+})
 
 io.on('connection', (socket) => {
     console.log('a user connected');
