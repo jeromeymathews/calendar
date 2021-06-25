@@ -89,18 +89,10 @@ function showCalendar(month, year) {
                     if (eventMonth === month && getDate === date) {
                         eventSpanData = eventMonthData;
                     }
-                    else {
-                        // const eventData = event.dateData.data;
-                        // const eventDate = eventMonthDay;
-                        // 
-                        // console.log(`not eventMonth && getDate`);
-                        // break;
-                    }
                     if (eventSpanData) {
                         return
                     }
                 });
-                // console.log(`${date} ${eventSpanData}`);
                 let cell = document.createElement("td");
                 let cellText = document.createTextNode(date);
                 let cellSpan = document.createElement("span");
