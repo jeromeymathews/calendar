@@ -8,6 +8,7 @@ const http = require('http');
 const server = http.createServer(app);
 const { Server } = require('socket.io');
 const io = new Server(server);
+const port = process.env.PORT || 3000;
 
 const today = new Date();
 const month = today.getMonth();
@@ -119,6 +120,6 @@ io.on('connection', (socket) => {
     })
 });
 
-server.listen(80, () => {
-    console.log('Listening');
+server.listen(port, () => {
+    console.log(`Listening on port ${port}`);
 });
