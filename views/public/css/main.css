@@ -39,6 +39,10 @@ tbody td span {
     border-radius: 5px;
 }
 
+#messages{
+    vertical-align: bottom;
+}
+
 .myImg img{
     border-radius: 15px;
 }
