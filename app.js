@@ -48,7 +48,7 @@ const dates = [
         id: 4,
         dateData: {
             date: "November 5",
-            data: "Sarah's bday"
+            data: "Rowan's bday"
         }
     }
 ];
