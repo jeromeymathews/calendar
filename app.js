@@ -108,8 +108,8 @@ app.get('/video', (req, res) => {
     res.render('video', {
         title: "Mathews video",
         scriptPartial: '<script src="../js/video.js"></script>'
-    })
-})
+    });
+});
 
 io.on('connection', (socket) => {
     console.log('a user connected');
@@ -118,7 +118,7 @@ io.on('connection', (socket) => {
     });
     socket.on('chat message', msg => {
         io.emit('chat message', msg);
-    })
+    });
 });
 
 server.listen(port, () => {
