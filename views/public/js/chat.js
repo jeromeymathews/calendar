@@ -12,7 +12,7 @@ form.addEventListener('submit', e => {
         socket.emit('chat message', input.value);
         input.value = '';
     }
-})
+});
 
 socket.on('chat message', msg => {
     let item = document.createElement('li');
