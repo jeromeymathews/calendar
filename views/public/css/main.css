@@ -18,6 +18,11 @@ tbody td span {
     border-radius: 5px;
 }
 
+a {
+    color: white;
+    text-decoration: none;
+}
+
 .today {
     background-color: yellow !important;
     color: black;
@@ -39,8 +44,25 @@ tbody td span {
     border-radius: 5px;
 }
 
+#messDiv {
+    height: 500px;
+}
+
 #messages {
     vertical-align: bottom;
+    height: 100%;
+}
+
+#messages.li {
+    display: inline-block;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
 }
 
 .myImg img {
@@ -69,7 +91,7 @@ tbody td span {
 #form>button {
     background: #333;
     border: none;
-    padding: 0 1rem;
+    /* padding: 0 1rem; */
     margin: 0.25rem;
     border-radius: 3px;
     outline: none;
@@ -86,9 +108,9 @@ tbody td span {
     padding: 0.5rem 1rem;
 }
 
-#messages>li:nth-child(odd) {
+/* #messages>li:nth-child(odd) {
     background: #efefef;
-}
+} */
 
 #input {
     border: none;

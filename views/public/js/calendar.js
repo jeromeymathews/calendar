@@ -9,6 +9,10 @@ const monthNames = [
 const activeMonth = document.getElementById("calendarLink");
 activeMonth.classList.add("active");
 
+if (!localStorage.username) {
+    location.replace('/');
+}
+
 function daysInMonth(month, year) {
     month++;
     return new Date(year, month, 0).getDate();

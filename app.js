@@ -10,6 +10,7 @@ const server = http.createServer(app);
 const { Server } = require('socket.io');
 const io = new Server(server);
 const port = process.env.PORT || 3000;
+const moment = require('moment');
 
 const today = new Date();
 const month = today.getMonth();
@@ -68,7 +69,6 @@ db.once('open', () => {
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static('views/public'));
-// const io = require('socket.io')(http);
 
 app.engine('ejs', engine);
 app.set('views', path.join(__dirname, 'views'));
@@ -78,7 +78,6 @@ mongoose.set('useFindAndModify', false);
 app.get('/', (req, res) => {
     //Find all upcoming dates, 
     //Send all dates through to the home page
-    // res.set('Cache-control', 'public, max-age=150');
     res.render('home', {
         title: "Mathews",
         dates: dates,
@@ -111,14 +110,26 @@ app.get('/video', (req, res) => {
     });
 });
 
-io.on('connection', (socket) => {
-    console.log('a user connected');
-    socket.on('disconnect', () => {
-        console.log('user disconnected')
-    });
-    socket.on('chat message', msg => {
-        io.emit('chat message', msg);
-    });
+
+io.on('connection', async (socket) => {
+    const offset = socket.handshake.auth.offset;
+    if (offset) {
+        //this is a reconnections
+        console.log('User reconnected');
+        for (const event of await fetchMissedEventsFromDatabase(offset)) {
+            socket.emit('my-event', event);
+        }
+    }
+    else {
+        //this is a new connection
+        console.log('a user connected');
+        socket.on('disconnect', () => {
+            console.log('user disconnected')
+        });
+        socket.on('chat message', (msg) => {
+            io.emit('chat message', (msg));
+        });
+    }
 });
 
 server.listen(port, () => {

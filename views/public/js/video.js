@@ -1,5 +1,10 @@
 const activeVideo = document.getElementById('videoLink');
 activeVideo.classList.add('active');
+
+if (!localStorage.username) {
+    location.replace('/');
+}
+
 let videoCall = document.getElementById('videoCall');
 let endCall = document.getElementById('endCall');
 let localVideo = document.getElementById('localVideo');

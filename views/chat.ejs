@@ -1,28 +1,18 @@
 <%= layout('layouts/boilerplate') %>
-    <div class="row">
-        <div class="col-3 myImg d-none d-md-block">
-            <img src="img/porsche1.jpg" alt="" srcset="" class="img-fluid mb-4">
-            <img src="img/porsche2.jpg" alt="" srcset="" class="img-fluid mb-4">
-            <img src="img/porsche3.jpg" alt="" srcset="" class="img-fluid mb-4">
-            <img src="img/porsche4.jpg" alt="" srcset="" class="img-fluid mb-4">
-        </div>
-        <div class="col-12 col-md-6">
+    <div class="row text-center justify-content-center">
+        <div class="col">
             <div class="row">
-                <div class="col-12 mb-5">
+                <div class="col-3 d-none d-md-block"></div>
+                <div class="col" id="messDiv">
                     <p class="lead">Better functionality coming as soon as I can figure it out.</p>
                     <ul id="messages" class="list-group"></ul>
                     <form id="form" action="">
-                        <input id="input" autocomplete="off" /><button class="text-center"><span
-                                class="d-none d-xxl-inline">Send</span>
-                            <span class="d-xxl-none"><i class="bi bi-chat-left-dots"></i></span></button>
+                        <input id="input" autocomplete="off" title="Message" placeholder="Message" /><button
+                            type="submit" id="send"><span class="d-none d-xxl-inline">Send</span>
+                            <span class="d-xxl-none"><i class="bi bi-chat-dots"></i></span></button>
                     </form>
                 </div>
+                <div class="col-3 d-none d-md-block"></div>
             </div>
-        </div>
-        <div class="col-3 myImg d-none d-md-block">
-            <img src="img/porsche4.jpg" alt="" srcset="" class="img-fluid mb-4">
-            <img src="img/porsche3.jpg" alt="" srcset="" class="img-fluid mb-4">
-            <img src="img/porsche2.jpg" alt="" srcset="" class="img-fluid mb-4">
-            <img src="img/porsche1.jpg" alt="" srcset="" class="img-fluid mb-4">
         </div>
     </div>
