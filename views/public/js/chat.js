@@ -20,7 +20,7 @@ form.addEventListener('submit', e => {
     }
 });
 
-socket.on('chat message', (msg) => {
+socket.on('chat message', msg => {
     let itemBodyText = document.createElement('p');
     let itemBodyTitle = document.createElement('h5');
     let itemBody = document.createElement('div');
