@@ -99,13 +99,15 @@ a {
     width: 10%;
 }
 
+
 #messages {
     margin: 0;
     padding: 0;
 }
 
 #messages>li {
-    padding: 0.5rem 1rem;
+    /* padding: 0.5rem 1rem; */
+    padding: 0;
 }
 
 /* #messages>li:nth-child(odd) {

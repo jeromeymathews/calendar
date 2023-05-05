@@ -20,6 +20,7 @@ const months = [
     'July', 'August', 'September',
     'October', 'November', 'December'
 ];
+const titleName = 'Mathews';
 
 //test dates will work mongodb into project
 const dates = [
@@ -27,7 +28,7 @@ const dates = [
         id: 1,
         dateData: {
             date: "March 13",
-            data: "Jer's bday"
+            data: "Jeromey's bday"
         }
     },
     {
@@ -53,9 +54,8 @@ const dates = [
     }
 ];
 
-mongoose.connect('mongodb://localhost:27017/mathewsCalendar', {
+mongoose.connect('mongodb://127.0.0.1:27017/calendar', {
     useNewUrlParser: true,
-    useCreateIndex: true,
     useUnifiedTopology: true
 });
 
@@ -72,13 +72,12 @@ app.use(express.static('views/public'));
 app.engine('ejs', engine);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-mongoose.set('useFindAndModify', false);
 
 app.get('/', (req, res) => {
     //Find all upcoming dates, 
     //Send all dates through to the home page
     res.render('home', {
-        title: "Mathews",
+        title: `${titleName}`,
         dates: dates,
         scriptPartial: ""
     });
@@ -87,7 +86,7 @@ app.get('/', (req, res) => {
 app.get('/calendar', (req, res) => {
     //Get dates from this month and send to calendar page
     res.render('calendar', {
-        title: "Mathews calendar",
+        title: `${titleName} calendar`,
         month: months[month],
         year: year,
         events: JSON.stringify(dates),
@@ -97,18 +96,24 @@ app.get('/calendar', (req, res) => {
 
 app.get('/chat', (req, res) => {
     res.render('chat', {
-        title: "Mathews chat",
+        title: `${titleName} chat`,
         scriptPartial: '<script src="/socket.io/socket.io.js"></script><script src="../js/chat.js"></script>'
     });
 });
 
 app.get('/video', (req, res) => {
     res.render('video', {
-        title: "Mathews video",
+        title: `${titleName} video`,
         scriptPartial: '<script src="../js/video.js"></script>'
     });
 });
 
+app.get('/gallery', (req, res) => {
+    res.render('gallery', {
+        title: `${titleName} gallery`,
+        scriptPartial: '<script src="../js/gallery.js"></script>'
+    });
+});
 
 io.on('connection', async (socket) => {
     const offset = socket.handshake.auth.offset;
