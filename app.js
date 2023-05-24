@@ -79,7 +79,7 @@ app.get('/', (req, res) => {
     res.render('home', {
         title: `${titleName}`,
         dates: dates,
-        scriptPartial: ""
+        scriptPartial: '<script src="../js/home.js"></script>'
     });
 });
 
