@@ -6,7 +6,7 @@
                     <div class="row no-gutters">
                         <div class="col-1">
                             <div class="d-inline-block" id="previousMonth"><span class="visually-hidden">Previous
-                                    month</span><i class="bi bi-chevron-left" id="chevron"></i></div>
+                                    month</span><i class="bi bi-chevron-left" id="lefthevron"></i></div>
                         </div>
                         <div class="col-10 text-center d-inline-block bg-dark">
                             <h3 id="monthYearHeading" class="d-inline-block">
@@ -15,7 +15,7 @@
                         </div>
                         <div class="col-1">
                             <div class="d-inline-block" id="nextMonth"><span class="visually-hidden">Next
-                                    month</span><i class="bi bi-chevron-right" id="chevron"></i></div>
+                                    month</span><i class="bi bi-chevron-right" id="rightChevron"></i></div>
                         </div>
                     </div>
                     <table class="table table-borderless">
@@ -36,9 +36,9 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-12"></div>
-    </div>
+    </div> -->
     <% if (month && year) { %>
         <script>
             let month = '<%= month %>'

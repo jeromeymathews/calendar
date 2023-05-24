@@ -115,7 +115,8 @@ function showCalendar(month, year) {
                 }
                 cellSpan.appendChild(cellText);
                 cellSpan.addEventListener("click", () => {
-                    addDate(month, date, year);
+                    const thisDay = cellSpan.innerHTML
+                    addDate(month, thisDay, year);
                 });
                 cell.appendChild(cellSpan);
                 if (eventSpanData) {
