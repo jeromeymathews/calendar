@@ -23,11 +23,11 @@
             <!-- ejs loop over dates display as cards infinate scroll -->
             <% dates.forEach( date=> { %>
                 <div class="card mb-1">
-                    <div class="card-header bg-dark">
+                    <div class="card-header"> <!-- bg-dark-->
                         <!-- Title of the date -->
                         <%= date.dateData.date %>
                     </div>
-                    <div class="card-body bg-dark">
+                    <div class="card-body"> <!--bg-dark-->
                         <%= date.dateData.data %>
                     </div>
                 </div>

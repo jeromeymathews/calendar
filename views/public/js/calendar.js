@@ -77,7 +77,7 @@ function showCalendar(month, year) {
             if (i === 0 && j < firstDay) {
                 let cell = document.createElement("td");
                 let cellText = document.createTextNode("");
-                cell.classList.add("bg-dark");
+                // cell.classList.add("bg-dark");
                 cell.appendChild(cellText);
                 row.appendChild(cell);
             }

@@ -1,6 +1,6 @@
 body {
-    background-color: #212529;
-    color: #ffffff;
+    /* background-color: #212529;
+    color: #ffffff; */
     font-family: 'Comic Sans MS', sans-serif;
 }
 
@@ -25,7 +25,7 @@ a {
 
 .today {
     background-color: yellow !important;
-    color: black;
+    color: black !important;
 }
 
 .today span {
@@ -70,7 +70,8 @@ a {
 }
 
 #form {
-    background: #212529;
+    /* background: #212529; */
+    border: black 1px solid;
     padding: 0.25rem;
     margin-bottom: 50px;
     /* position: absolute; */
@@ -91,13 +92,13 @@ a {
 }
 
 #form>button {
-    background: #333;
+    /* background: #333; */
     border: none;
     /* padding: 0 1rem; */
     margin: 0.25rem;
     border-radius: 3px;
     outline: none;
-    color: #fff;
+    /* color: #fff; */
     width: 10%;
 }
 
