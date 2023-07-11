@@ -20,7 +20,9 @@ function pageReady() {
         videoCall.removeAttribute('disabled');
         videoCall.addEventListener('click', initiateCall);
         endCall.addEventListener('click', e => {
-            wsc.send(JSON.stringify({ "closeConnection": true }));
+            // wsc.send(JSON.stringify({ "closeConnection": true }));
+            endCall.setAttribute('disabled', '');
+            console.log('Ending video call');
         });
     }
     else {
