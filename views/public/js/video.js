@@ -15,14 +15,18 @@ function initiateCall() {
     console.log("Starting video call");
 }
 
+function closeCall(){
+    endCall.setAttribute('disabled', '');
+    console.log('Ending video call');
+}
+
 function pageReady() {
     if (navigator.getUserMedia) {
         videoCall.removeAttribute('disabled');
         videoCall.addEventListener('click', initiateCall);
         endCall.addEventListener('click', e => {
             // wsc.send(JSON.stringify({ "closeConnection": true }));
-            endCall.setAttribute('disabled', '');
-            console.log('Ending video call');
+            closeCall();
         });
     }
     else {
