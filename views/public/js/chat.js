@@ -21,55 +21,45 @@ form.addEventListener('submit', e => {
 });
 
 socket.on('chat message', msg => {
-    let itemBodyText = document.createElement('p');
-    let itemBodyTitle = document.createElement('h6');
-    let itemTitleRow = document.createElement('div');
-    let itemTitleRowName = document.createElement('div');
-    let itemTitleRowTime = document.createElement('div');
-    let itemBody = document.createElement('div');
-    let itemContent = document.createElement('div');
-    let itemImage = document.createElement('img');
-    let itemImageContainer = document.createElement('div');
-    let itemRow = document.createElement('div');
-    let itemCard = document.createElement('div');
-    let item = document.createElement('li');
-    itemBodyText.classList.add('card-text');
-    itemBodyText.classList.add('text-start');
-    itemBodyText.textContent = msg.message;
-    itemBodyTitle.classList.add('card-title');
-    itemTitleRow.classList.add('row');
-    itemTitleRowName.classList.add('col-6');
-    itemTitleRowName.classList.add('text-start');
-    itemTitleRowTime.classList.add('col-6');
-    itemTitleRowTime.classList.add('text-end');
-    //itemBodyTitle.textContent = `${msg.username} | ${msg.stamp}`;
-    itemTitleRowTime.textContent = msg.stamp;
-    itemTitleRowName.textContent = msg.username;
-    itemTitleRow.appendChild(itemTitleRowName);
-    itemTitleRow.appendChild(itemTitleRowTime);
-    itemBodyTitle.appendChild(itemTitleRow);
-    itemBody.classList.add('card-body');
-    itemBody.classList.add('col-md-8');
-    itemBody.appendChild(itemBodyTitle);
-    itemBody.appendChild(itemBodyText)
-    itemContent.classList.add('col-md-8');
-    itemContent.appendChild(itemBody);
-    itemImage.src = 'https://picsum.photos/200'; //Will change to user profile picture
-    itemImage.alt = 'profile picture';
-    itemImage.classList.add('img-fluid');
-    itemImage.classList.add('rounded-start');
-    itemImageContainer.classList.add('col-md-4');
-    itemImageContainer.appendChild(itemImage);
-    itemRow.classList.add('row');
-    itemRow.classList.add('g-0');
-    itemRow.appendChild(itemImageContainer);
-    itemRow.appendChild(itemBody);
-    itemCard.classList.add('card');
-    itemCard.classList.add('mb-3');
-    itemCard.appendChild(itemRow);
-    item.classList.add('list-group-item');
-    item.classList.add('list-group-item-dark');
-    item.appendChild(itemCard);
-    messages.appendChild(item);
+    messages.appendChild(createMessageElement(msg));
     // scrollTo(0, document.body.scrollHeight); //Will add this back when functionality permits
 });
+
+// Refactored code for creating message elements
+function createMessageElement(msg) {
+    const elements = {
+        itemBodyText: createElementWithClasses('p', ['card-text', 'text-start']),
+        itemBodyTitle: createElementWithClasses('h6', ['card-title']),
+        itemTitleRow: createElementWithClasses('div', ['row']),
+        itemTitleRowName: createElementWithClasses('div', ['col-6', 'text-start']),
+        itemTitleRowTime: createElementWithClasses('div', ['col-6', 'text-end']),
+        itemBody: createElementWithClasses('div', ['card-body', 'col-md-8']),
+        itemImage: createElementWithClasses('img', ['img-fluid', 'rounded-start']),
+        itemImageContainer: createElementWithClasses('div', ['col-md-4']),
+        itemRow: createElementWithClasses('div', ['row', 'g-0']),
+        itemCard: createElementWithClasses('div', ['card', 'mb-3']),
+        item: createElementWithClasses('li', ['list-group-item', 'list-group-item-dark'])
+    };
+
+    elements.itemBodyText.textContent = msg.message;
+    elements.itemTitleRowTime.textContent = msg.stamp;
+    elements.itemTitleRowName.textContent = msg.username;
+    elements.itemImage.src = 'https://picsum.photos/200';
+    elements.itemImage.alt = 'profile picture';
+
+    elements.itemTitleRow.append(elements.itemTitleRowName, elements.itemTitleRowTime);
+    elements.itemBodyTitle.appendChild(elements.itemTitleRow);
+    elements.itemBody.append(elements.itemBodyTitle, elements.itemBodyText);
+    elements.itemImageContainer.appendChild(elements.itemImage);
+    elements.itemRow.append(elements.itemImageContainer, elements.itemBody);
+    elements.itemCard.appendChild(elements.itemRow);
+    elements.item.appendChild(elements.itemCard);
+
+    return elements.item;
+}
+
+function createElementWithClasses(tagName, classes) {
+    const element = document.createElement(tagName);
+    element.classList.add(...classes);
+    return element;
+}
