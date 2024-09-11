@@ -11,6 +11,9 @@ const { Server } = require('socket.io');
 const io = new Server(server);
 const port = process.env.PORT || 3000;
 
+const passport = require('passport');
+const session = require('express-session');
+
 const today = new Date();
 const month = today.getMonth();
 const year = today.getFullYear();
@@ -115,6 +118,29 @@ app.get('/gallery', (req, res) => {
     });
 });
 
+// Session middleware
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
+}));
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// New route for sign-in page
+app.get('/signin', (req, res) => {
+    res.render('signin', {
+        title: `${titleName} Sign In`,
+        scriptPartial: '<script src="../js/signin.js"></script>'
+    });
+});
+
+// Include auth routes
+const authRoutes = require('./routes/auth');
+app.use('/auth', authRoutes);
+
 io.on('connection', async (socket) => {
     const offset = socket.handshake.auth.offset;
     if (offset) {
@@ -139,3 +165,5 @@ io.on('connection', async (socket) => {
 server.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
+
+require('dotenv').config();
